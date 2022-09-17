@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h1>{{ name.user_name }}</h1>
+    <p><strong>{{ method }}</strong></p>
+    {% if error_message %}
+        <p>
+            <strong>{{ error_message }}</strong>
+        </p>
+    {% endif %}
+    {% csrf_token %}
+    {% for contact in name.contact_set.all %}
+        <label for="contact{{ forloop.counter }}">
+            <p2>Photo: <img src="{{ contact.cover.url }}" width="100" height="100"> </p2>
+            <br>
+            <p2>City:  {{ contact.city }}</p2>
+            <br>
+            <p2>Street:  {{ contact.street }}</p2>
+            <br>
+            <p2>Postcode:  {{ contact.postcode }}</p2>
+            <br>
+            <p2>Phone:  {{ contact.phone }}</p2>
+            <br>
+            <p2>Email:  {{ contact.email }}</p2>
+            <hr>
+        </label><br>
+    {% endfor %}
+    <button onclick="window.location.href = '/contacts';">Back to contact list</button>
+{% endblock %}

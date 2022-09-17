@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h4 class="card-title">Available Contacts</h4>
+    {% if message %}
+        <p class="alert alert-success">
+            <strong>{{ message }}</strong>
+        </p>
+    {% endif %}
+    {% if names %}
+        <ul>
+            {% for name in names %}
+                <li>
+                    <a href="/contacts/{{ name.id }}/">
+                        {{ name.user_name }}
+                    </a>
+                <h8>Registration date/time:</h8> {{ name.pub_date }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No contacts are available right now.</p>
+    {% endif %}
+{% endblock %}
